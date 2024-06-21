@@ -1,15 +1,12 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import lodearriba from './top'
+//import header from './top'
 import './App.css'
 
 function App() {
-  // const [count, setCount] = useState(0)
-  // const [agrupar, sumarMas] = useState(1)
-  // const [contabilizar, quitar] = useState(0)
 
-    var movidas = [
+    const employees = [
       { name: 'Juan', lastName: 'Perez', hobbies: ['fútbol', 'lectura'], age: 25 },
       { name: 'María', lastName: 'González', hobbies: ['pintura', 'música'], age: 30 },
       { name: 'Pedro', lastName: 'López', hobbies: ['senderismo', 'cine'], age: 28 },
@@ -42,31 +39,87 @@ function App() {
       { name: 'Cristina', lastName: 'Herrero', hobbies: ['bailar', 'pintura'], age: 26 }
     ];
   
-    var patata1 = 1 
-    var almacenamiento = [];
-    for (var i = 0; i < movidas.length; i++) {
+    
+    const almacenamiento = [];
+    for (let i = 0; i < employees.length; i++) {
       almacenamiento.push(
         <div key={i}>
-          <p>Nombre: {movidas[i].name}</p>
-          <p>Apellidos: {movidas[i].lastName}</p>
-          <p>Hobbies: {movidas[i].hobbies.join(', ')}</p>
-          <p>Edad: {movidas[i].age}</p>
+          <p>Nombre: {employees[i].name}</p>
+          <p>Apellidos: {employees[i].lastName}</p>
+          <p>Hobbies: {employees[i].hobbies.join(', ')}</p>
+          <p>Edad: {employees[i].age}</p>
         </div>
       );
     }
 
-    var patata2 = 2
-    var resultadopatata = patata1+patata2 
+
+
+    const [number1, setNumber1] = useState(0)
+    const [number2, setNumber2] = useState(0)
+    const [result, setResult] = useState(0)
+
+
+
+    const handleSuma = (e) => {
+        e.preventDefault()
+       setResult(Number(number1) + Number(number2))
+      return result
+    }
+    const handleResta = (e) => {
+      e.preventDefault()
+     setResult(Number(number1) - Number(number2))
+    return result
+  }
+      const handleDivision = (e) => {
+        e.preventDefault()
+      setResult(Number(number1) / Number(number2))
+      return result
+    }
+    const handleMultiplicacion = (e) => {
+      e.preventDefault()
+    setResult(Number(number1) * Number(number2))
+    return result
+  }
    
   return (
-    // tengo que poner aquí el logo en lo de arriba. Que no se me olvide
     <div className="envoltura">
+    <header>
+      <img className="logo" src="./src/assets/cocretainc.jpg" alt="logo" />
+    </header>
+    <main>
+
+    
       {almacenamiento}
-      {/* <Form> */}
-      {/* {suma} --> clacula la suma de los dos elementos que hay en los inputs */}
-      {resultadopatata}
-      {cocreta} 
-      {/* ejemplo para cambiar luego patata por el resultado que tengo que guardar en las variables para que haga la suma. Puedo usar las mismas variables para el resto */}
+
+      <div>
+            <form action="">
+                <h2>Calculadora</h2>
+                <input type="number" id="number1" name="number1" onChange={(e)=>{setNumber1(e.target.value)}} placeholder="Number 1"/><br />
+                <input type="number" id="number2" name="number2" onChange={(e)=>{setNumber2(e.target.value)}} placeholder="Number 2"/>
+                <div>
+                  <button onClick={handleSuma}>+</button>
+                  <button onClick={handleResta}>-</button>
+                  <button onClick={handleMultiplicacion}>*</button>
+                  <button onClick={handleDivision}>/</button>
+                </div>
+                <h2>Resultado: {result}</h2>
+              
+            </form>
+        </div>
+    </main>
+
+    <footer>
+    <p>Todos los derechos reservados.</p> 
+    <p>Coquetas INC © </p> 
+    <p>Dirección: Simancas (Madriz)</p>
+    <p>Teléfono: 917335673 - 635444912 </p>
+    <p>Email: croquetasINC@hotmail.com</p>
+    </footer>
+
+
+      
+      
+      
       {/* <button>Aquí tiene que enviar algo para que funcione</button>
       </Form> */}
       {/* <div>
